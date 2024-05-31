@@ -1,0 +1,722 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F2BD782D2C08BFAA00960EB4 /* CamendarApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BD782C2C08BFAA00960EB4 /* CamendarApp.swift */; };
+		F2BD782F2C08BFAA00960EB4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BD782E2C08BFAA00960EB4 /* ContentView.swift */; };
+		F2BD78312C08BFAC00960EB4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2BD78302C08BFAC00960EB4 /* Assets.xcassets */; };
+		F2BD78342C08BFAC00960EB4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2BD78332C08BFAC00960EB4 /* Preview Assets.xcassets */; };
+		F2BD783E2C08BFAC00960EB4 /* CamendarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BD783D2C08BFAC00960EB4 /* CamendarTests.swift */; };
+		F2BD78482C08BFAC00960EB4 /* CamendarUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BD78472C08BFAC00960EB4 /* CamendarUITests.swift */; };
+		F2BD784A2C08BFAC00960EB4 /* CamendarUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BD78492C08BFAC00960EB4 /* CamendarUITestsLaunchTests.swift */; };
+		F2BD78632C08C26B00960EB4 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BD78612C08C26400960EB4 /* ProfileView.swift */; };
+		F2BD78672C08C2C700960EB4 /* SelectedDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BD78662C08C2C700960EB4 /* SelectedDate.swift */; };
+		F2BD78692C08C2E300960EB4 /* GridItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BD78682C08C2E300960EB4 /* GridItemView.swift */; };
+		F2BD786B2C08C32900960EB4 /* DocumentScanViewControllerRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BD786A2C08C32900960EB4 /* DocumentScanViewControllerRepresentable.swift */; };
+		F2BD786D2C08C34300960EB4 /* DateComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BD786C2C08C34300960EB4 /* DateComponent.swift */; };
+		F2BD786F2C08C37400960EB4 /* CalendarGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BD786E2C08C37400960EB4 /* CalendarGridView.swift */; };
+		F2BD78712C08C38A00960EB4 /* CalendarEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BD78702C08C38A00960EB4 /* CalendarEvent.swift */; };
+		F2BD78732C08C3AA00960EB4 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BD78722C08C3AA00960EB4 /* CalendarView.swift */; };
+		F2BD78752C08C3BE00960EB4 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BD78742C08C3BE00960EB4 /* AuthView.swift */; };
+		F2BD78772C08C3DF00960EB4 /* AddEventfromScannedDocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BD78762C08C3DF00960EB4 /* AddEventfromScannedDocumentView.swift */; };
+		F2BD78792C08C3F300960EB4 /* AddEventMethodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BD78782C08C3F300960EB4 /* AddEventMethodView.swift */; };
+		F2BD787A2C08C40400960EB4 /* editEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BD78642C08C29300960EB4 /* editEventView.swift */; };
+		F2BD78822C08C62A00960EB4 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = F2BD78812C08C62A00960EB4 /* FirebaseAnalytics */; };
+		F2BD78842C08C65000960EB4 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = F2BD78832C08C65000960EB4 /* FirebaseAuth */; };
+		F2BD78862C08C65600960EB4 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = F2BD78852C08C65600960EB4 /* FirebaseFirestore */; };
+		F2BD78882C08C67800960EB4 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = F2BD78872C08C67800960EB4 /* FirebaseAnalytics */; };
+		F2BD788A2C08C67B00960EB4 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = F2BD78892C08C67B00960EB4 /* FirebaseAuth */; };
+		F2BD788C2C08C67F00960EB4 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = F2BD788B2C08C67F00960EB4 /* FirebaseFirestore */; };
+		F2BD788E2C09BFB300960EB4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F2BD788D2C09BFB300960EB4 /* GoogleService-Info.plist */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F2BD783A2C08BFAC00960EB4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F2BD78212C08BFAA00960EB4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F2BD78282C08BFAA00960EB4;
+			remoteInfo = Camendar;
+		};
+		F2BD78442C08BFAC00960EB4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F2BD78212C08BFAA00960EB4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F2BD78282C08BFAA00960EB4;
+			remoteInfo = Camendar;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F2BD78292C08BFAA00960EB4 /* Camendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Camendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F2BD782C2C08BFAA00960EB4 /* CamendarApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CamendarApp.swift; sourceTree = "<group>"; };
+		F2BD782E2C08BFAA00960EB4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		F2BD78302C08BFAC00960EB4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F2BD78332C08BFAC00960EB4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		F2BD78392C08BFAC00960EB4 /* CamendarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CamendarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F2BD783D2C08BFAC00960EB4 /* CamendarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CamendarTests.swift; sourceTree = "<group>"; };
+		F2BD78432C08BFAC00960EB4 /* CamendarUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CamendarUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F2BD78472C08BFAC00960EB4 /* CamendarUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CamendarUITests.swift; sourceTree = "<group>"; };
+		F2BD78492C08BFAC00960EB4 /* CamendarUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CamendarUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		F2BD78612C08C26400960EB4 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		F2BD78642C08C29300960EB4 /* editEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = editEventView.swift; sourceTree = "<group>"; };
+		F2BD78662C08C2C700960EB4 /* SelectedDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedDate.swift; sourceTree = "<group>"; };
+		F2BD78682C08C2E300960EB4 /* GridItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridItemView.swift; sourceTree = "<group>"; };
+		F2BD786A2C08C32900960EB4 /* DocumentScanViewControllerRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentScanViewControllerRepresentable.swift; sourceTree = "<group>"; };
+		F2BD786C2C08C34300960EB4 /* DateComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateComponent.swift; sourceTree = "<group>"; };
+		F2BD786E2C08C37400960EB4 /* CalendarGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarGridView.swift; sourceTree = "<group>"; };
+		F2BD78702C08C38A00960EB4 /* CalendarEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEvent.swift; sourceTree = "<group>"; };
+		F2BD78722C08C3AA00960EB4 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		F2BD78742C08C3BE00960EB4 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
+		F2BD78762C08C3DF00960EB4 /* AddEventfromScannedDocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventfromScannedDocumentView.swift; sourceTree = "<group>"; };
+		F2BD78782C08C3F300960EB4 /* AddEventMethodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventMethodView.swift; sourceTree = "<group>"; };
+		F2BD788D2C09BFB300960EB4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F2BD78262C08BFAA00960EB4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F2BD78822C08C62A00960EB4 /* FirebaseAnalytics in Frameworks */,
+				F2BD78842C08C65000960EB4 /* FirebaseAuth in Frameworks */,
+				F2BD78862C08C65600960EB4 /* FirebaseFirestore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F2BD78362C08BFAC00960EB4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F2BD78402C08BFAC00960EB4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F2BD78882C08C67800960EB4 /* FirebaseAnalytics in Frameworks */,
+				F2BD788A2C08C67B00960EB4 /* FirebaseAuth in Frameworks */,
+				F2BD788C2C08C67F00960EB4 /* FirebaseFirestore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F2BD78202C08BFAA00960EB4 = {
+			isa = PBXGroup;
+			children = (
+				F2BD782B2C08BFAA00960EB4 /* Camendar */,
+				F2BD783C2C08BFAC00960EB4 /* CamendarTests */,
+				F2BD78462C08BFAC00960EB4 /* CamendarUITests */,
+				F2BD782A2C08BFAA00960EB4 /* Products */,
+				F2BD787B2C08C43700960EB4 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		F2BD782A2C08BFAA00960EB4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F2BD78292C08BFAA00960EB4 /* Camendar.app */,
+				F2BD78392C08BFAC00960EB4 /* CamendarTests.xctest */,
+				F2BD78432C08BFAC00960EB4 /* CamendarUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F2BD782B2C08BFAA00960EB4 /* Camendar */ = {
+			isa = PBXGroup;
+			children = (
+				F2BD78642C08C29300960EB4 /* editEventView.swift */,
+				F2BD782C2C08BFAA00960EB4 /* CamendarApp.swift */,
+				F2BD78662C08C2C700960EB4 /* SelectedDate.swift */,
+				F2BD78682C08C2E300960EB4 /* GridItemView.swift */,
+				F2BD786A2C08C32900960EB4 /* DocumentScanViewControllerRepresentable.swift */,
+				F2BD786C2C08C34300960EB4 /* DateComponent.swift */,
+				F2BD782E2C08BFAA00960EB4 /* ContentView.swift */,
+				F2BD786E2C08C37400960EB4 /* CalendarGridView.swift */,
+				F2BD78702C08C38A00960EB4 /* CalendarEvent.swift */,
+				F2BD78722C08C3AA00960EB4 /* CalendarView.swift */,
+				F2BD78742C08C3BE00960EB4 /* AuthView.swift */,
+				F2BD78762C08C3DF00960EB4 /* AddEventfromScannedDocumentView.swift */,
+				F2BD78782C08C3F300960EB4 /* AddEventMethodView.swift */,
+				F2BD78612C08C26400960EB4 /* ProfileView.swift */,
+				F2BD78302C08BFAC00960EB4 /* Assets.xcassets */,
+				F2BD78322C08BFAC00960EB4 /* Preview Content */,
+			);
+			path = Camendar;
+			sourceTree = "<group>";
+		};
+		F2BD78322C08BFAC00960EB4 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				F2BD78332C08BFAC00960EB4 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		F2BD783C2C08BFAC00960EB4 /* CamendarTests */ = {
+			isa = PBXGroup;
+			children = (
+				F2BD783D2C08BFAC00960EB4 /* CamendarTests.swift */,
+			);
+			path = CamendarTests;
+			sourceTree = "<group>";
+		};
+		F2BD78462C08BFAC00960EB4 /* CamendarUITests */ = {
+			isa = PBXGroup;
+			children = (
+				F2BD78472C08BFAC00960EB4 /* CamendarUITests.swift */,
+				F2BD78492C08BFAC00960EB4 /* CamendarUITestsLaunchTests.swift */,
+			);
+			path = CamendarUITests;
+			sourceTree = "<group>";
+		};
+		F2BD787B2C08C43700960EB4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F2BD788D2C09BFB300960EB4 /* GoogleService-Info.plist */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F2BD78282C08BFAA00960EB4 /* Camendar */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F2BD784D2C08BFAC00960EB4 /* Build configuration list for PBXNativeTarget "Camendar" */;
+			buildPhases = (
+				F2BD78252C08BFAA00960EB4 /* Sources */,
+				F2BD78262C08BFAA00960EB4 /* Frameworks */,
+				F2BD78272C08BFAA00960EB4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Camendar;
+			packageProductDependencies = (
+				F2BD78812C08C62A00960EB4 /* FirebaseAnalytics */,
+				F2BD78832C08C65000960EB4 /* FirebaseAuth */,
+				F2BD78852C08C65600960EB4 /* FirebaseFirestore */,
+			);
+			productName = Camendar;
+			productReference = F2BD78292C08BFAA00960EB4 /* Camendar.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F2BD78382C08BFAC00960EB4 /* CamendarTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F2BD78502C08BFAC00960EB4 /* Build configuration list for PBXNativeTarget "CamendarTests" */;
+			buildPhases = (
+				F2BD78352C08BFAC00960EB4 /* Sources */,
+				F2BD78362C08BFAC00960EB4 /* Frameworks */,
+				F2BD78372C08BFAC00960EB4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F2BD783B2C08BFAC00960EB4 /* PBXTargetDependency */,
+			);
+			name = CamendarTests;
+			productName = CamendarTests;
+			productReference = F2BD78392C08BFAC00960EB4 /* CamendarTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		F2BD78422C08BFAC00960EB4 /* CamendarUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F2BD78532C08BFAC00960EB4 /* Build configuration list for PBXNativeTarget "CamendarUITests" */;
+			buildPhases = (
+				F2BD783F2C08BFAC00960EB4 /* Sources */,
+				F2BD78402C08BFAC00960EB4 /* Frameworks */,
+				F2BD78412C08BFAC00960EB4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F2BD78452C08BFAC00960EB4 /* PBXTargetDependency */,
+			);
+			name = CamendarUITests;
+			packageProductDependencies = (
+				F2BD78872C08C67800960EB4 /* FirebaseAnalytics */,
+				F2BD78892C08C67B00960EB4 /* FirebaseAuth */,
+				F2BD788B2C08C67F00960EB4 /* FirebaseFirestore */,
+			);
+			productName = CamendarUITests;
+			productReference = F2BD78432C08BFAC00960EB4 /* CamendarUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F2BD78212C08BFAA00960EB4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1540;
+				LastUpgradeCheck = 1540;
+				TargetAttributes = {
+					F2BD78282C08BFAA00960EB4 = {
+						CreatedOnToolsVersion = 15.4;
+					};
+					F2BD78382C08BFAC00960EB4 = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = F2BD78282C08BFAA00960EB4;
+					};
+					F2BD78422C08BFAC00960EB4 = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = F2BD78282C08BFAA00960EB4;
+					};
+				};
+			};
+			buildConfigurationList = F2BD78242C08BFAA00960EB4 /* Build configuration list for PBXProject "Camendar" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F2BD78202C08BFAA00960EB4;
+			packageReferences = (
+				F2BD78802C08C62A00960EB4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
+			productRefGroup = F2BD782A2C08BFAA00960EB4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F2BD78282C08BFAA00960EB4 /* Camendar */,
+				F2BD78382C08BFAC00960EB4 /* CamendarTests */,
+				F2BD78422C08BFAC00960EB4 /* CamendarUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F2BD78272C08BFAA00960EB4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F2BD78342C08BFAC00960EB4 /* Preview Assets.xcassets in Resources */,
+				F2BD78312C08BFAC00960EB4 /* Assets.xcassets in Resources */,
+				F2BD788E2C09BFB300960EB4 /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F2BD78372C08BFAC00960EB4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F2BD78412C08BFAC00960EB4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F2BD78252C08BFAA00960EB4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F2BD78732C08C3AA00960EB4 /* CalendarView.swift in Sources */,
+				F2BD78672C08C2C700960EB4 /* SelectedDate.swift in Sources */,
+				F2BD78712C08C38A00960EB4 /* CalendarEvent.swift in Sources */,
+				F2BD786B2C08C32900960EB4 /* DocumentScanViewControllerRepresentable.swift in Sources */,
+				F2BD782F2C08BFAA00960EB4 /* ContentView.swift in Sources */,
+				F2BD78632C08C26B00960EB4 /* ProfileView.swift in Sources */,
+				F2BD786F2C08C37400960EB4 /* CalendarGridView.swift in Sources */,
+				F2BD78792C08C3F300960EB4 /* AddEventMethodView.swift in Sources */,
+				F2BD782D2C08BFAA00960EB4 /* CamendarApp.swift in Sources */,
+				F2BD786D2C08C34300960EB4 /* DateComponent.swift in Sources */,
+				F2BD78772C08C3DF00960EB4 /* AddEventfromScannedDocumentView.swift in Sources */,
+				F2BD78752C08C3BE00960EB4 /* AuthView.swift in Sources */,
+				F2BD78692C08C2E300960EB4 /* GridItemView.swift in Sources */,
+				F2BD787A2C08C40400960EB4 /* editEventView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F2BD78352C08BFAC00960EB4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F2BD783E2C08BFAC00960EB4 /* CamendarTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F2BD783F2C08BFAC00960EB4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F2BD784A2C08BFAC00960EB4 /* CamendarUITestsLaunchTests.swift in Sources */,
+				F2BD78482C08BFAC00960EB4 /* CamendarUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F2BD783B2C08BFAC00960EB4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F2BD78282C08BFAA00960EB4 /* Camendar */;
+			targetProxy = F2BD783A2C08BFAC00960EB4 /* PBXContainerItemProxy */;
+		};
+		F2BD78452C08BFAC00960EB4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F2BD78282C08BFAA00960EB4 /* Camendar */;
+			targetProxy = F2BD78442C08BFAC00960EB4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		F2BD784B2C08BFAC00960EB4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		F2BD784C2C08BFAC00960EB4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F2BD784E2C08BFAC00960EB4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Camendar/Preview Content\"";
+				DEVELOPMENT_TEAM = 7557BD2C7D;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "yuto-shino.Camendar-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F2BD784F2C08BFAC00960EB4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Camendar/Preview Content\"";
+				DEVELOPMENT_TEAM = 7557BD2C7D;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "yuto-shino.Camendar-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		F2BD78512C08BFAC00960EB4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7557BD2C7D;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "yuto-shino.CamendarTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Camendar.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Camendar";
+			};
+			name = Debug;
+		};
+		F2BD78522C08BFAC00960EB4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7557BD2C7D;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "yuto-shino.CamendarTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Camendar.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Camendar";
+			};
+			name = Release;
+		};
+		F2BD78542C08BFAC00960EB4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7557BD2C7D;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "yuto-shino.Camendar-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Camendar;
+			};
+			name = Debug;
+		};
+		F2BD78552C08BFAC00960EB4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7557BD2C7D;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "yuto-shino.Camendar-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Camendar;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F2BD78242C08BFAA00960EB4 /* Build configuration list for PBXProject "Camendar" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F2BD784B2C08BFAC00960EB4 /* Debug */,
+				F2BD784C2C08BFAC00960EB4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F2BD784D2C08BFAC00960EB4 /* Build configuration list for PBXNativeTarget "Camendar" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F2BD784E2C08BFAC00960EB4 /* Debug */,
+				F2BD784F2C08BFAC00960EB4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F2BD78502C08BFAC00960EB4 /* Build configuration list for PBXNativeTarget "CamendarTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F2BD78512C08BFAC00960EB4 /* Debug */,
+				F2BD78522C08BFAC00960EB4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F2BD78532C08BFAC00960EB4 /* Build configuration list for PBXNativeTarget "CamendarUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F2BD78542C08BFAC00960EB4 /* Debug */,
+				F2BD78552C08BFAC00960EB4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F2BD78802C08C62A00960EB4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.27.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F2BD78812C08C62A00960EB4 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F2BD78802C08C62A00960EB4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		F2BD78832C08C65000960EB4 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F2BD78802C08C62A00960EB4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		F2BD78852C08C65600960EB4 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F2BD78802C08C62A00960EB4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		F2BD78872C08C67800960EB4 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F2BD78802C08C62A00960EB4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		F2BD78892C08C67B00960EB4 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F2BD78802C08C62A00960EB4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		F2BD788B2C08C67F00960EB4 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F2BD78802C08C62A00960EB4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = F2BD78212C08BFAA00960EB4 /* Project object */;
+}
