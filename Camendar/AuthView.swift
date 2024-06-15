@@ -49,7 +49,7 @@ struct AuthView: View {
             }
             .padding(.top)
             .fullScreenCover(isPresented: $showContentView){
-                ContentView(isHome: $isHome)
+                ContentView()
             }
 
             Button(action: {

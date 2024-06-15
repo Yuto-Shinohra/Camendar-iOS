@@ -9,7 +9,6 @@ import SwiftUI
 import FirebaseAuth
 
 struct ProfileView: View {
-    @Binding var isHome: Bool
     var body: some View {
         Button(action: {
             do {
@@ -18,7 +17,6 @@ struct ProfileView: View {
             catch let error as NSError {
                 print(error)
             }
-            isHome.toggle()
         }, label: {
             Text("SignOut")
         })

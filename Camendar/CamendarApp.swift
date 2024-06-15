@@ -27,7 +27,8 @@ struct camendarApp: App {
     var body: some Scene {
         WindowGroup {
             if Auth.auth().currentUser != nil {
-                ContentView(isaddEvent: false,isHome: $isHome)
+//                HomeView(isaddEvent: false)
+                ContentView()
             }else{
                 AuthView()
             }
