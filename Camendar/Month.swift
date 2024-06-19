@@ -18,7 +18,6 @@ struct Event: Identifiable {
     let title: String
     let date: Date
 }
-
 func generateDays(for month: Int, year: Int) -> [DateComponent] {
     var dateComponents: [DateComponent] = []
     let calendar = Calendar.current

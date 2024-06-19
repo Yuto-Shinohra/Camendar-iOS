@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CalendarView: View {
     @State private var currentMonthIndex: Int
+    @State private var selectedDate: SelectedDate? = nil
     let months: [Month] = generateMonths(from: 2024, to: 2025)
     let isSettings: Bool
     @State var isMax: Bool = false
@@ -72,11 +73,27 @@ struct CalendarView: View {
                     ForEach(0..<months.count, id: \.self) { index in
                         LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 7), spacing: 10) {
                             ForEach(months[index].days, id: \.self) { dateComponent in
-                                if dateComponent.isPlaceholder {
-                                    Text("")
-                                        .frame(width: 30, height: 30)
+                                if let day = dateComponent.day {
+                                    let isToday = Calendar.current.isDate(Date(), equalTo: Calendar.current.date(from: DateComponents(year: months[index].year, month: currentMonthIndex % 12 + 1, day: day))!, toGranularity: .day)
+                                    ZStack {
+                                        if selectedDate?.day == day && selectedDate?.month == currentMonthIndex % 12 + 1 && selectedDate?.year == months[index].year {
+                                            Rectangle()
+                                                .fill(Color.blue.opacity(0.3))
+                                                .frame(width: 30, height: 30)
+                                                .cornerRadius(5)
+                                        }
+                                        
+                                        Text("\(day)")
+                                            .foregroundColor(isToday ? .green : .primary)
+                                            .frame(width: 30, height: 30)
+                                            .background(selectedDate?.day == day && selectedDate?.month == currentMonthIndex % 12 + 1 && selectedDate?.year == months[index].year ? Color.blue.opacity(0.3) : Color.clear)
+                                            .cornerRadius(5)
+                                            .onTapGesture {
+                                                selectedDate = SelectedDate(day: day, month: currentMonthIndex % 12 + 1, year: months[index].year)
+                                            }
+                                    }
                                 } else {
-                                    Text("\(dateComponent.day!)")
+                                    Text("")
                                         .frame(width: 30, height: 30)
                                 }
                             }
