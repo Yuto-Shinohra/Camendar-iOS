@@ -10,6 +10,7 @@
 		F2B97D422C1C8DFE004304C1 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B97D412C1C8DFE004304C1 /* HomeView.swift */; };
 		F2B97D442C1C913B004304C1 /* AddEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B97D432C1C913B004304C1 /* AddEventView.swift */; };
 		F2B97D462C1C9163004304C1 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B97D452C1C9163004304C1 /* SettingsView.swift */; };
+		F2B97D482C1D5A69004304C1 /* Month.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B97D472C1D5A69004304C1 /* Month.swift */; };
 		F2BD782D2C08BFAA00960EB4 /* CamendarApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BD782C2C08BFAA00960EB4 /* CamendarApp.swift */; };
 		F2BD782F2C08BFAA00960EB4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BD782E2C08BFAA00960EB4 /* ContentView.swift */; };
 		F2BD78312C08BFAC00960EB4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2BD78302C08BFAC00960EB4 /* Assets.xcassets */; };
@@ -59,6 +60,7 @@
 		F2B97D412C1C8DFE004304C1 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		F2B97D432C1C913B004304C1 /* AddEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventView.swift; sourceTree = "<group>"; };
 		F2B97D452C1C9163004304C1 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		F2B97D472C1D5A69004304C1 /* Month.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Month.swift; sourceTree = "<group>"; };
 		F2BD78292C08BFAA00960EB4 /* Camendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Camendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2BD782C2C08BFAA00960EB4 /* CamendarApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CamendarApp.swift; sourceTree = "<group>"; };
 		F2BD782E2C08BFAA00960EB4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 				F2BD786E2C08C37400960EB4 /* CalendarGridView.swift */,
 				F2BD78702C08C38A00960EB4 /* CalendarEvent.swift */,
 				F2BD78722C08C3AA00960EB4 /* CalendarView.swift */,
+				F2B97D472C1D5A69004304C1 /* Month.swift */,
 				F2BD78742C08C3BE00960EB4 /* AuthView.swift */,
 				F2BD78762C08C3DF00960EB4 /* AddEventfromScannedDocumentView.swift */,
 				F2BD78782C08C3F300960EB4 /* AddEventMethodView.swift */,
@@ -341,6 +344,7 @@
 			files = (
 				F2BD78732C08C3AA00960EB4 /* CalendarView.swift in Sources */,
 				F2BD78672C08C2C700960EB4 /* SelectedDate.swift in Sources */,
+				F2B97D482C1D5A69004304C1 /* Month.swift in Sources */,
 				F2BD78712C08C38A00960EB4 /* CalendarEvent.swift in Sources */,
 				F2B97D442C1C913B004304C1 /* AddEventView.swift in Sources */,
 				F2B97D422C1C8DFE004304C1 /* HomeView.swift in Sources */,

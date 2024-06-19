@@ -7,50 +7,73 @@
 
 import SwiftUI
 
-
 struct CalendarView: View {
-    @State private var currentMonth: Date = Date() // 現在の月
-    @Binding var selectedDate: SelectedDate? // 選択された日付
-    var events: [CalendarEvent] // イベントのリスト
-    @State private var recognizedText: String = "" // OCR結果を保持
-
+    @State private var currentMonthIndex: Int = 0
+    let months: [Month] = generateMonths(for: 2024)
+    let isSettings: Bool
+    @State var isMax: Bool = false
+    init(isSettings: Bool) {
+            self.isSettings = isSettings
+            _isMax = State(initialValue: !isSettings)
+        }
+    
     var body: some View {
         VStack {
-            //            Text(monthYearString(date: currentMonth))
-            //                .font(.title)
-            //                .bold()
-            //                .padding()
-
-            CalendarGridView(
-                currentMonth: $currentMonth,
-                selectedDate: $selectedDate,
-                events: events // イベントのリストを渡す
-            )
-            .navigationBarTitle(monthYearString(date: currentMonth),displayMode: .inline)
-
-            .gesture(
-                DragGesture(minimumDistance: 50)
-                    .onEnded { value in
-                        if value.translation.width < 0 {
-                            withAnimation {
-                                currentMonth = addMonth(to: currentMonth, offset: 1)
-                            }
-                        } else if value.translation.width > 0 {
-                            withAnimation {
-                                currentMonth = addMonth(to: currentMonth, offset: -1)
-                            }
+            HStack {
+                Button(action: {
+                    withAnimation {
+                        currentMonthIndex = (currentMonthIndex - 1 + months.count) % months.count
+                    }
+                }) {
+                    Image(systemName: "chevron.left")
+                }
+                
+                Spacer()
+                
+                Text("\(months[currentMonthIndex].name) 2024")
+                    .font(.headline)
+                    .onTapGesture {
+                        withAnimation{
+                            isMax.toggle()
                         }
                     }
-            )
+                
+                Spacer()
+                
+                Button(action: {
+                    withAnimation {
+                        currentMonthIndex = (currentMonthIndex + 1) % months.count
+                    }
+                }) {
+                    Image(systemName: "chevron.right")
+                }
+            }
+            .padding()
+            if isMax{
+                HStack {
+                    ForEach(["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"], id: \.self) { day in
+                        Text(day)
+                            .frame(maxWidth: .infinity)
+                    }
+                }
+                .padding([.leading, .trailing])
+                
+                TabView(selection: $currentMonthIndex) {
+                    ForEach(0..<months.count, id: \.self) { index in
+                        LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 7), spacing: 10) {
+                            ForEach(months[index].days, id: \.self) { day in
+                                Text("\(Calendar.current.component(.day, from: day))")
+                                    .frame(width: 30, height: 30)
+                            }
+                        }
+                        .tag(index)
+                        .padding()
+                    }
+                }
+                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                Spacer()
+            }
         }
-    }
-    func monthYearString(date: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy年MM月"
-        return formatter.string(from: date)
-    }
-    func addMonth(to date: Date, offset: Int) -> Date {
-        let calendar = Calendar.current
-        return calendar.date(byAdding: .month, value: offset, to: date) ?? date
+        
     }
 }

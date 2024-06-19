@@ -27,10 +27,6 @@ struct HomeView: View {
     var body: some View {
         NavigationView {
                 VStack {
-                    CalendarView(
-                        selectedDate: $selectedDate,
-                        events: events
-                    )
                     Divider()
                     if let selectedDate = selectedDate {
                         let relatedEvents = events.filter { event in

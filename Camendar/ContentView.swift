@@ -9,17 +9,25 @@ import SwiftUI
 
 struct ContentView: View {
     @State var isHome: Bool = true
+    @State var selectednum: Int = 0
     var body: some View{
-        TabView{
-            HomeView()
-                .tabItem { Image(systemName: "house") }
-                .tag(0)
-            AddEventView()
-                .tabItem { Image(systemName: "plus") }
-                .tag(1)
-            SettingsView()
-                .tabItem { Image(systemName: "gearshape") }
-                .tag(2)
+        VStack{
+            if selectednum == 0 || selectednum == 1{
+                CalendarView(isSettings: false)
+            }else if selectednum == 2{
+                CalendarView(isSettings: true)
+            }
+            TabView(selection: $selectednum){
+                HomeView()
+                    .tabItem { Image(systemName: "house") }
+                    .tag(0)
+                AddEventView()
+                    .tabItem { Image(systemName: "plus") }
+                    .tag(1)
+                SettingsView()
+                    .tabItem { Image(systemName: "gearshape") }
+                    .tag(2)
+            }
         }
     }
 }
