@@ -9,12 +9,8 @@ import SwiftUI
 
 struct Month {
     let name: String
-    let days: [DateComponent]
-}
-
-struct Year {
     let year: Int
-    let months: [Month]
+    let days: [DateComponent]
 }
 
 struct Event: Identifiable {
@@ -45,32 +41,23 @@ func generateDays(for month: Int, year: Int) -> [DateComponent] {
     return dateComponents
 }
 
-func generateMonths(for year: Int) -> [Month] {
+func generateMonths(from startYear: Int, to endYear: Int) -> [Month] {
     let calendar = Calendar.current
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "MMMM"
     
     var months = [Month]()
     
-    for month in 1...12 {
-        let startComponents = DateComponents(year: year, month: month, day: 1)
-        guard let startDate = calendar.date(from: startComponents) else { continue }
-        
-        let days = generateDays(for: month, year: year)
-        let monthName = dateFormatter.string(from: startDate)
-        months.append(Month(name: monthName, days: days))
+    for year in startYear...endYear {
+        for month in 1...12 {
+            let startComponents = DateComponents(year: year, month: month, day: 1)
+            guard let startDate = calendar.date(from: startComponents) else { continue }
+            
+            let days = generateDays(for: month, year: year)
+            let monthName = dateFormatter.string(from: startDate)
+            months.append(Month(name: monthName, year: year, days: days))
+        }
     }
     
     return months
-}
-
-func generateYears(from startYear: Int, to endYear: Int) -> [Year] {
-    var years = [Year]()
-    
-    for year in startYear...endYear {
-        let months = generateMonths(for: year)
-        years.append(Year(year: year, months: months))
-    }
-    
-    return years
 }
