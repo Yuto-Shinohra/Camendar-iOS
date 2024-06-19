@@ -8,14 +8,15 @@
 import SwiftUI
 
 struct CalendarView: View {
+    @Binding var selectedDate: SelectedDate?
     @State private var currentMonthIndex: Int
-    @State private var selectedDate: SelectedDate? = nil
     let months: [Month] = generateMonths(from: 2024, to: 2025)
     let isSettings: Bool
     @State var isMax: Bool = false
     
-    init(isSettings: Bool) {
+    init(isSettings: Bool, selectedDate: Binding<SelectedDate?>) {
         self.isSettings = isSettings
+        self._selectedDate = selectedDate
         _isMax = State(initialValue: !isSettings)
         
         let calendar = Calendar.current
@@ -100,6 +101,12 @@ struct CalendarView: View {
                         }
                         .tag(index)
                         .padding()
+                        .onAppear {
+                            // 選択された日付が表示されたときにハイライト
+                            if let selectedDate = selectedDate, selectedDate.year == months[index].year, selectedDate.month == currentMonthIndex % 12 + 1 {
+                                self.selectedDate = selectedDate
+                            }
+                        }
                     }
                 }
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
