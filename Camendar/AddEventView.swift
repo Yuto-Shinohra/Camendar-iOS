@@ -9,7 +9,11 @@ import SwiftUI
 
 struct AddEventView: View {
     var body: some View {
-        Text("Hello, World!")
+        VStack{
+            Divider()
+            Text("Hello, World!")
+            Spacer()
+        }
     }
 }
 
