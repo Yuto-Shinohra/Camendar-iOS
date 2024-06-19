@@ -10,7 +10,7 @@ import SwiftUI
 struct CalendarView: View {
     @Binding var selectedDate: SelectedDate?
     @State private var currentMonthIndex: Int
-    let months: [Month] = generateMonths(from: 2024, to: 2025)
+    @State private var currentYear: Int
     let isSettings: Bool
     @State var isMax: Bool = false
     
@@ -24,16 +24,21 @@ struct CalendarView: View {
         let currentYear = calendar.component(.year, from: currentDate)
         let currentMonth = calendar.component(.month, from: currentDate)
         
-        let initialMonthIndex = (currentYear - 2024) * 12 + (currentMonth - 1)
-        _currentMonthIndex = State(initialValue: initialMonthIndex)
+        _currentYear = State(initialValue: currentYear)
+        _currentMonthIndex = State(initialValue: currentMonth - 1)
     }
     
     var body: some View {
         VStack {
             HStack {
                 Button(action: {
-                    withAnimation {
-                        currentMonthIndex = (currentMonthIndex - 1 + months.count) % months.count
+                    withAnimation(.easeInOut(duration: 0.3)) {
+                        if currentMonthIndex == 0 {
+                            currentMonthIndex = 11
+                            currentYear -= 1
+                        } else {
+                            currentMonthIndex -= 1
+                        }
                     }
                 }) {
                     Image(systemName: "chevron.left")
@@ -41,7 +46,7 @@ struct CalendarView: View {
                 
                 Spacer()
                 
-                Text("\(months[currentMonthIndex].name) \(String(months[currentMonthIndex].year))")
+                Text("\(monthName(for: currentMonthIndex)) \(String(currentYear))")
                     .font(.headline)
                     .onTapGesture {
                         withAnimation {
@@ -52,8 +57,13 @@ struct CalendarView: View {
                 Spacer()
                 
                 Button(action: {
-                    withAnimation {
-                        currentMonthIndex = (currentMonthIndex + 1) % months.count
+                    withAnimation(.easeInOut(duration: 0.3)) {
+                        if currentMonthIndex == 11 {
+                            currentMonthIndex = 0
+                            currentYear += 1
+                        } else {
+                            currentMonthIndex += 1
+                        }
                     }
                 }) {
                     Image(systemName: "chevron.right")
@@ -70,48 +80,44 @@ struct CalendarView: View {
                 }
                 .padding([.leading, .trailing])
                 
-                TabView(selection: $currentMonthIndex) {
-                    ForEach(0..<months.count, id: \.self) { index in
-                        LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 7), spacing: 10) {
-                            ForEach(months[index].days, id: \.self) { dateComponent in
-                                if let day = dateComponent.day {
-                                    let isToday = Calendar.current.isDate(Date(), equalTo: Calendar.current.date(from: DateComponents(year: months[index].year, month: currentMonthIndex % 12 + 1, day: day))!, toGranularity: .day)
-                                    ZStack {
-                                        if selectedDate?.day == day && selectedDate?.month == currentMonthIndex % 12 + 1 && selectedDate?.year == months[index].year {
-                                            Rectangle()
-                                                .fill(Color.blue.opacity(0.3))
-                                                .frame(width: 30, height: 30)
-                                                .cornerRadius(5)
-                                        }
-                                        
-                                        Text("\(day)")
-                                            .foregroundColor(isToday ? .green : .primary)
-                                            .frame(width: 30, height: 30)
-                                            .background(selectedDate?.day == day && selectedDate?.month == currentMonthIndex % 12 + 1 && selectedDate?.year == months[index].year ? Color.blue.opacity(0.3) : Color.clear)
-                                            .cornerRadius(5)
-                                            .onTapGesture {
-                                                selectedDate = SelectedDate(day: day, month: currentMonthIndex % 12 + 1, year: months[index].year)
-                                            }
-                                    }
-                                } else {
-                                    Text("")
+                LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 7), spacing: 10) {
+                    ForEach(generateDays(for: currentMonthIndex + 1, year: currentYear), id: \.self) { dateComponent in
+                        if let day = dateComponent.day {
+                            let isToday = Calendar.current.isDate(Date(), equalTo: Calendar.current.date(from: DateComponents(year: currentYear, month: currentMonthIndex + 1, day: day))!, toGranularity: .day)
+                            ZStack {
+                                if selectedDate?.day == day && selectedDate?.month == currentMonthIndex + 1 && selectedDate?.year == currentYear {
+                                    Rectangle()
+                                        .fill(Color.blue.opacity(0.3))
                                         .frame(width: 30, height: 30)
+                                        .cornerRadius(5)
                                 }
+                                
+                                Text("\(day)")
+                                    .foregroundColor(isToday ? .green : .primary)
+                                    .frame(width: 30, height: 30)
+                                    .background(selectedDate?.day == day && selectedDate?.month == currentMonthIndex + 1 && selectedDate?.year == currentYear ? Color.blue.opacity(0.3) : Color.clear)
+                                    .cornerRadius(5)
+                                    .onTapGesture {
+                                        selectedDate = SelectedDate(day: day, month: currentMonthIndex + 1, year: currentYear)
+                                    }
                             }
-                        }
-                        .tag(index)
-                        .padding()
-                        .onAppear {
-                            // 選択された日付が表示されたときにハイライト
-                            if let selectedDate = selectedDate, selectedDate.year == months[index].year, selectedDate.month == currentMonthIndex % 12 + 1 {
-                                self.selectedDate = selectedDate
-                            }
+                        } else {
+                            Text("")
+                                .frame(width: 30, height: 30)
                         }
                     }
                 }
-                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                .padding()
+                .transition(.opacity)
                 Spacer()
             }
         }
+    }
+    
+    func monthName(for index: Int) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMMM"
+        let date = Calendar.current.date(from: DateComponents(year: 2020, month: index + 1))!
+        return dateFormatter.string(from: date)
     }
 }

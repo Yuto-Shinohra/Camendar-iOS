@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-struct Month {
-    let name: String
-    let year: Int
-    let days: [DateComponent]
-}
+//struct Month {
+//    let name: String
+//    let year: Int
+//    let days: [DateComponent]
+//}
 
 struct Event: Identifiable {
     let id = UUID()
@@ -38,25 +38,4 @@ func generateDays(for month: Int, year: Int) -> [DateComponent] {
     }
     
     return dateComponents
-}
-
-func generateMonths(from startYear: Int, to endYear: Int) -> [Month] {
-    let calendar = Calendar.current
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "MMMM"
-    
-    var months = [Month]()
-    
-    for year in startYear...endYear {
-        for month in 1...12 {
-            let startComponents = DateComponents(year: year, month: month, day: 1)
-            guard let startDate = calendar.date(from: startComponents) else { continue }
-            
-            let days = generateDays(for: month, year: year)
-            let monthName = dateFormatter.string(from: startDate)
-            months.append(Month(name: monthName, year: year, days: days))
-        }
-    }
-    
-    return months
 }
