@@ -32,14 +32,7 @@ struct CalendarView: View {
         VStack {
             HStack {
                 Button(action: {
-                    withAnimation(.easeInOut(duration: 0.3)) {
-                        if currentMonthIndex == 0 {
-                            currentMonthIndex = 11
-                            currentYear -= 1
-                        } else {
-                            currentMonthIndex -= 1
-                        }
-                    }
+                    previousMonth()
                 }) {
                     Image(systemName: "chevron.left")
                 }
@@ -49,22 +42,13 @@ struct CalendarView: View {
                 Text("\(monthName(for: currentMonthIndex)) \(String(currentYear))")
                     .font(.headline)
                     .onTapGesture {
-                        withAnimation {
-                            isMax.toggle()
-                        }
+                        isMax.toggle()
                     }
                 
                 Spacer()
                 
                 Button(action: {
-                    withAnimation(.easeInOut(duration: 0.3)) {
-                        if currentMonthIndex == 11 {
-                            currentMonthIndex = 0
-                            currentYear += 1
-                        } else {
-                            currentMonthIndex += 1
-                        }
-                    }
+                    nextMonth()
                 }) {
                     Image(systemName: "chevron.right")
                 }
@@ -108,7 +92,16 @@ struct CalendarView: View {
                     }
                 }
                 .padding()
-                .transition(.opacity)
+                .gesture(
+                    DragGesture()
+                        .onEnded { value in
+                            if value.translation.width < 0 {
+                                nextMonth()
+                            } else if value.translation.width > 0 {
+                                previousMonth()
+                            }
+                        }
+                )
                 Spacer()
             }
         }
@@ -119,5 +112,23 @@ struct CalendarView: View {
         dateFormatter.dateFormat = "MMMM"
         let date = Calendar.current.date(from: DateComponents(year: 2020, month: index + 1))!
         return dateFormatter.string(from: date)
+    }
+    
+    func nextMonth() {
+        if currentMonthIndex == 11 {
+            currentMonthIndex = 0
+            currentYear += 1
+        } else {
+            currentMonthIndex += 1
+        }
+    }
+    
+    func previousMonth() {
+        if currentMonthIndex == 0 {
+            currentMonthIndex = 11
+            currentYear -= 1
+        } else {
+            currentMonthIndex -= 1
+        }
     }
 }
