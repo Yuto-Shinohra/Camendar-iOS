@@ -6,15 +6,20 @@
 //
 
 import SwiftUI
+import Firebase
+import FirebaseFirestore
+import FirebaseAuth
+
 struct AddEventMethodView: View {
-    @Environment(\.presentationMode) var presentationMode // 画面を閉じるため
-    @State private var eventName: String = "" // イベント名
-    @State private var eventDate: Date // イベントの日付
-    @State private var startTime: Date // 開始時間
-    @State private var endTime: Date // 終了時間
-    var addEvent: (CalendarEvent) -> Void // イベントを追加するためのクロージャ
+    @Environment(\.presentationMode) var presentationMode // For closing the view
+    @State private var eventName: String = "" // Event name
+    @State private var eventDate: Date // Event date
+    @State private var startTime: Date // Start time
+    @State private var endTime: Date // End time
+    @State private var isAllDay: Bool = false // All-day event toggle
+    var addEvent: (CalendarEvent) -> Void // Closure to add event
     
-    // 初期日付を選択された日付から生成
+    // Initialize with selected date
     init(selectedDate: SelectedDate, addEvent: @escaping (CalendarEvent) -> Void) {
         self.addEvent = addEvent
         let calendar = Calendar.current
@@ -24,53 +29,51 @@ struct AddEventMethodView: View {
             day: selectedDate.day
         ))!
         
-        self.eventDate = date // イベントの日付
-        self.startTime = date // 開始時間を設定
-        self.endTime = calendar.date(byAdding: .hour, value: 1, to: date)! // 終了時間を1時間後に設定
+        self.eventDate = date
+        self.startTime = date
+        self.endTime = calendar.date(byAdding: .hour, value: 1, to: date)!
     }
-    //イベントを追加する日付が今日よりも前の場合はアラートを表示
+    
     var body: some View {
-        VStack{
+        VStack {
             Divider()
-            ScrollView{
+            ScrollView {
                 VStack {
                     Spacer()
-                    TextField("Event Name...", text: $eventName) // イベント名の入力
+                    TextField("Event Name...", text: $eventName)
                         .padding()
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                     
-//                    // 日付を選択するためのDatePicker
-//                    DatePicker(
-//                        "Event Date",
-//                        selection: $eventDate,
-//                        displayedComponents: [.date]
-//                    )
-//                    .padding()
+                    Toggle("All Day", isOn: $isAllDay)
+                        .padding()
                     
-                    // 開始時間と終了時間の選択
-                    DatePicker(
-                        "Start Time",
-                        selection: $startTime,
-                        displayedComponents: [.hourAndMinute]
-                    )
-                    .padding()
+                    if !isAllDay {
+                        DatePicker(
+                            "Start Time",
+                            selection: $startTime,
+                            displayedComponents: [.hourAndMinute]
+                        )
+                        .padding()
+                        
+                        DatePicker(
+                            "End Time",
+                            selection: $endTime,
+                            displayedComponents: [.hourAndMinute]
+                        )
+                        .padding()
+                    }
                     
-                    DatePicker(
-                        "End Time",
-                        selection: $endTime,
-                        displayedComponents: [.hourAndMinute]
-                    )
-                    .padding()
                     Button(action: {
                         let event = CalendarEvent(
                             name: eventName,
-                            date: eventDate, // イベントの日付
-                            startTime: startTime,
-                            endTime: endTime
+                            date: eventDate,
+                            startTime: isAllDay ? eventDate : startTime,
+                            endTime: isAllDay ? eventDate : endTime,
+                            isAllDay: isAllDay
                         )
-                        addEvent(event) // イベントを追加
-                        presentationMode.wrappedValue.dismiss() // 画面を閉じる
-                        print(CalendarEvent.self)
+                        addEvent(event)
+                        saveEventToFirestore(event: event)
+                        presentationMode.wrappedValue.dismiss()
                     }, label: {
                         Text("Add Event")
                             .padding()
@@ -81,6 +84,15 @@ struct AddEventMethodView: View {
                 }
             }
         }
-        //        .padding()
+    }
+    
+    private func saveEventToFirestore(event: CalendarEvent) {
+        let db = Firestore.firestore()
+        guard let userId = Auth.auth().currentUser?.uid else { return }
+        do {
+            try db.collection("users").document(userId).collection("events").document(event.id?.uuidString ?? UUID().uuidString).setData(event.toDictionary())
+        } catch let error {
+            print("Error writing event to Firestore: \(error)")
+        }
     }
 }

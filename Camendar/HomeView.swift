@@ -37,18 +37,23 @@ struct HomeView: View {
                     }
                     VStack {
                         if relatedEvents.isEmpty {
-                            Text("No event")
+                            Text("No Event")
                                 .padding()
                         } else {
                             List {
                                 ForEach(relatedEvents) { event in
                                     HStack {
-                                        Text("\(timeFormatter.string(from: event.startTime))~\(timeFormatter.string(from: event.endTime))")
+                                        if event.isAllDay {
+                                            Text("All Day")
+                                        } else {
+                                            Text("\(timeFormatter.string(from: event.startTime))~\(timeFormatter.string(from: event.endTime))")
+                                        }
                                         NavigationLink(destination: editEventView(
                                             eventName: event.name,
                                             eventDate: event.date,
                                             startTime: event.startTime,
                                             endTime: event.endTime,
+                                            isAllDay: event.isAllDay,
                                             events: $events,
                                             eventID: event.id ?? UUID(),
                                             addEvent: { updatedEvent in

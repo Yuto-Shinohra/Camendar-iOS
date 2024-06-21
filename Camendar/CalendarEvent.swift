@@ -7,7 +7,6 @@
 
 import SwiftUI
 import FirebaseFirestore
-//import FirebaseFirestoreSwift
 
 struct CalendarEvent: Identifiable, Codable {
     var id: UUID?
@@ -15,13 +14,15 @@ struct CalendarEvent: Identifiable, Codable {
     var date: Date
     var startTime: Date
     var endTime: Date
+    var isAllDay: Bool
 
-    init(id: UUID? = UUID(), name: String, date: Date, startTime: Date, endTime: Date) {
+    init(id: UUID? = UUID(), name: String, date: Date, startTime: Date, endTime: Date, isAllDay: Bool = false) {
         self.id = id
         self.name = name
         self.date = date
         self.startTime = startTime
         self.endTime = endTime
+        self.isAllDay = isAllDay
     }
 
     func toDictionary() -> [String: Any] {
@@ -30,7 +31,8 @@ struct CalendarEvent: Identifiable, Codable {
             "name": name,
             "date": Timestamp(date: date),
             "startTime": Timestamp(date: startTime),
-            "endTime": Timestamp(date: endTime)
+            "endTime": Timestamp(date: endTime),
+            "isAllDay": isAllDay
         ]
     }
 
@@ -41,11 +43,12 @@ struct CalendarEvent: Identifiable, Codable {
             let name = dictionary["name"] as? String,
             let date = dictionary["date"] as? Timestamp,
             let startTime = dictionary["startTime"] as? Timestamp,
-            let endTime = dictionary["endTime"] as? Timestamp
+            let endTime = dictionary["endTime"] as? Timestamp,
+            let isAllDay = dictionary["isAllDay"] as? Bool
         else {
             return nil
         }
 
-        return CalendarEvent(id: id, name: name, date: date.dateValue(), startTime: startTime.dateValue(), endTime: endTime.dateValue())
+        return CalendarEvent(id: id, name: name, date: date.dateValue(), startTime: startTime.dateValue(), endTime: endTime.dateValue(), isAllDay: isAllDay)
     }
 }
