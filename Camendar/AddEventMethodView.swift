@@ -39,13 +39,13 @@ struct AddEventMethodView: View {
                         .padding()
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                     
-                    // 日付を選択するためのDatePicker
-                    DatePicker(
-                        "Event Date",
-                        selection: $eventDate,
-                        displayedComponents: [.date]
-                    )
-                    .padding()
+//                    // 日付を選択するためのDatePicker
+//                    DatePicker(
+//                        "Event Date",
+//                        selection: $eventDate,
+//                        displayedComponents: [.date]
+//                    )
+//                    .padding()
                     
                     // 開始時間と終了時間の選択
                     DatePicker(

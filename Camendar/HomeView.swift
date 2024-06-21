@@ -11,8 +11,7 @@ import FirebaseFirestore
 import FirebaseAuth
 
 struct HomeView: View {
-    @State private var currentMonth: Date = Date()
-    @State private var selectedDate: SelectedDate?
+    @Binding var selectedDate: SelectedDate?
     @State var isaddEvent: Bool = false
     @State private var events: [CalendarEvent] = []
     @State var ShowCamera: Bool = false
@@ -26,17 +25,21 @@ struct HomeView: View {
 
     var body: some View {
         NavigationView {
-                VStack {
-                    Divider()
-                    if let selectedDate = selectedDate {
-                        let relatedEvents = events.filter { event in
-                            let calendar = Calendar.current
-                            let eventDate = calendar.dateComponents([.year, .month, .day], from: event.date)
-                            return eventDate.year == selectedDate.year &&
-                            eventDate.month == selectedDate.month &&
-                            eventDate.day == selectedDate.day
-                        }
-                        VStack {
+            VStack {
+                Divider()
+                if let selectedDate = selectedDate {
+                    let relatedEvents = events.filter { event in
+                        let calendar = Calendar.current
+                        let eventDate = calendar.dateComponents([.year, .month, .day], from: event.date)
+                        return eventDate.year == selectedDate.year &&
+                        eventDate.month == selectedDate.month &&
+                        eventDate.day == selectedDate.day
+                    }
+                    VStack {
+                        if relatedEvents.isEmpty {
+                            Text("No event")
+                                .padding()
+                        } else {
                             List {
                                 ForEach(relatedEvents) { event in
                                     HStack {
@@ -68,66 +71,20 @@ struct HomeView: View {
                             }
                             .scrollContentBackground(.hidden)
                         }
-                    } else {
-                        Text("Select a date to see events")
-                            .padding()
                     }
-                    Spacer()
+                } else {
+                    Text("Select a date to see events")
+                        .padding()
                 }
-//            .toolbar {
-//                ToolbarItem(placement: .navigationBarTrailing) {
-//                    let calendar = Calendar.current
-//                    let defaultDate = selectedDate ?? SelectedDate(
-//                        day: calendar.component(.day, from: Date()),
-//                        month: calendar.component(.month, from: Date()),
-//                        year: calendar.component(.year, from: Date())
-//                    )
-//                    NavigationLink(destination: AddEventfromScannedDocumentView(selectedDate: defaultDate, addEvent: { newEvent in
-//                        events.append(newEvent)
-//                        saveEventToFirestore(event: newEvent)
-//                    })) {
-//                        Image(systemName: "doc.viewfinder")
-//                    }
-//                }
-//                ToolbarItem(placement: .navigationBarLeading) {
-//                    Button(action: {
-//                        isProfile.toggle()
-//                    }, label: {
-//                        Text(Image(systemName: "person"))
-//                    })
-//                    .sheet(isPresented: $isProfile) {
-//                        ProfileView()
-//                    }
-//                }
-//                ToolbarItem(placement: .navigationBarTrailing) {
-//                    Button(action: {
-//                        isaddEvent.toggle()
-//                    }) {
-//                        Image(systemName: "plus")
-//                    }
-//                    .sheet(isPresented: $isaddEvent) {
-//                        let calendar = Calendar.current
-//                        let defaultDate = selectedDate ?? SelectedDate(
-//                            day: calendar.component(.day, from: Date()),
-//                            month: calendar.component(.month, from: Date()),
-//                            year: calendar.component(.year, from: Date())
-//                        )
-//                        
-//                        AddEventMethodView(
-//                            selectedDate: defaultDate,
-//                            addEvent: { newEvent in
-//                                events.append(newEvent)
-//                                saveEventToFirestore(event: newEvent)
-//                            }
-//                        )
-//                    }
-//                }
-//            }
+                Spacer()
+            }
             .onAppear {
                 loadEventsFromFirestore()
             }
+            .onChange(of: selectedDate) { newSelectedDate in
+                loadEventsFromFirestore(for: newSelectedDate)
+            }
         }
-        
     }
 
     private func saveEventToFirestore(event: CalendarEvent) {
@@ -139,7 +96,7 @@ struct HomeView: View {
         }
     }
 
-    private func loadEventsFromFirestore() {
+    private func loadEventsFromFirestore(for selectedDate: SelectedDate? = nil) {
         guard let userId = userId else { return }
         db.collection("users").document(userId).collection("events").getDocuments { (querySnapshot, error) in
             if let error = error {
@@ -148,6 +105,15 @@ struct HomeView: View {
                 if let querySnapshot = querySnapshot {
                     self.events = querySnapshot.documents.compactMap { document in
                         CalendarEvent.fromDictionary(document.data())
+                    }
+                }
+                if let selectedDate = selectedDate {
+                    self.events = self.events.filter { event in
+                        let calendar = Calendar.current
+                        let eventDate = calendar.dateComponents([.year, .month, .day], from: event.date)
+                        return eventDate.year == selectedDate.year &&
+                        eventDate.month == selectedDate.month &&
+                        eventDate.day == selectedDate.day
                     }
                 }
             }

@@ -4,7 +4,6 @@
 //
 //  Created by Yuto Shinohara on 2024/05/30.
 //
-
 import SwiftUI
 
 struct CalendarView: View {
@@ -42,7 +41,9 @@ struct CalendarView: View {
                 Text("\(monthName(for: currentMonthIndex)) \(String(currentYear))")
                     .font(.headline)
                     .onTapGesture {
-                        isMax.toggle()
+                        withAnimation{
+                            isMax.toggle()
+                        }
                     }
                 
                 Spacer()
@@ -54,7 +55,6 @@ struct CalendarView: View {
                 }
             }
             .padding()
-            
             if isMax {
                 HStack {
                     ForEach(["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"], id: \.self) { day in

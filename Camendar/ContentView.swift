@@ -9,6 +9,7 @@ import SwiftUI
 import Firebase
 import FirebaseFirestore
 import FirebaseAuth
+
 struct ContentView: View {
     @State var isHome: Bool = true
     @State var selectednum: Int = 0
@@ -19,7 +20,6 @@ struct ContentView: View {
         Auth.auth().currentUser?.uid
     }
 
-    
     var body: some View{
         VStack{
             if selectednum == 0 || selectednum == 1 {
@@ -28,10 +28,9 @@ struct ContentView: View {
                 CalendarView(isSettings: true, selectedDate: $selectedDate)
             }
             TabView(selection: $selectednum){
-                HomeView()
+                HomeView(selectedDate: $selectedDate)
                     .tabItem { Image(systemName: "house") }
                     .tag(0)
-                //                AddEventView()
                 let calendar = Calendar.current
                 let defaultDate = selectedDate ?? SelectedDate(
                     day: calendar.component(.day, from: Date()),
@@ -41,7 +40,6 @@ struct ContentView: View {
                 AddEventMethodView(selectedDate: defaultDate, addEvent: { newEvent in
                     events.append(newEvent)
                     saveEventToFirestore(event: newEvent)
-                    
                 })
                 .tabItem { Image(systemName: "plus") }
                 .tag(1)
@@ -51,6 +49,7 @@ struct ContentView: View {
             }
         }
     }
+
     private func saveEventToFirestore(event: CalendarEvent) {
         guard let userId = userId else { return }
         do {
@@ -59,7 +58,7 @@ struct ContentView: View {
             print("Error writing event to Firestore: \(error)")
         }
     }
-    
+
     private func loadEventsFromFirestore() {
         guard let userId = userId else { return }
         db.collection("users").document(userId).collection("events").getDocuments { (querySnapshot, error) in
@@ -74,7 +73,7 @@ struct ContentView: View {
             }
         }
     }
-    
+
     private func remove(at offsets: IndexSet) {
         guard let userId = userId else { return }
         offsets.forEach { idx in
@@ -83,7 +82,7 @@ struct ContentView: View {
         }
         events.remove(atOffsets: offsets)
     }
-    
+
     private var timeFormatter: DateFormatter {
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm"
