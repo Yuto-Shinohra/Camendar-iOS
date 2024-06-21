@@ -36,7 +36,6 @@ struct AddEventMethodView: View {
     
     var body: some View {
         VStack {
-            Divider()
             ScrollView {
                 VStack {
                     Spacer()

@@ -12,6 +12,7 @@ struct CalendarView: View {
     @State private var currentYear: Int
     let isSettings: Bool
     @State var isMax: Bool = false
+    @State private var selectedWeekday: Int? = nil // State to track the selected weekday
     
     init(isSettings: Bool, selectedDate: Binding<SelectedDate?>) {
         self.isSettings = isSettings
@@ -41,9 +42,7 @@ struct CalendarView: View {
                 Text("\(monthName(for: currentMonthIndex)) \(String(currentYear))")
                     .font(.headline)
                     .onTapGesture {
-                        withAnimation{
-                            isMax.toggle()
-                        }
+                        isMax.toggle()
                     }
                 
                 Spacer()
@@ -55,11 +54,19 @@ struct CalendarView: View {
                 }
             }
             .padding()
+            
             if isMax {
                 HStack {
-                    ForEach(["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"], id: \.self) { day in
+                    ForEach(0..<7, id: \.self) { index in
+                        let day = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][index]
                         Text(day)
                             .frame(maxWidth: .infinity)
+                            .background(selectedWeekday == index ? Color.blue.opacity(0.3) : Color.clear)
+                            .cornerRadius(5)
+                            .onTapGesture {
+                                selectedWeekday = index
+                                selectedDate = nil // Clear date selection
+                            }
                     }
                 }
                 .padding([.leading, .trailing])
@@ -67,9 +74,12 @@ struct CalendarView: View {
                 LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 7), spacing: 10) {
                     ForEach(generateDays(for: currentMonthIndex + 1, year: currentYear), id: \.self) { dateComponent in
                         if let day = dateComponent.day {
-                            let isToday = Calendar.current.isDate(Date(), equalTo: Calendar.current.date(from: DateComponents(year: currentYear, month: currentMonthIndex + 1, day: day))!, toGranularity: .day)
+                            let date = Calendar.current.date(from: DateComponents(year: currentYear, month: currentMonthIndex + 1, day: day))!
+                            let isToday = Calendar.current.isDate(Date(), equalTo: date, toGranularity: .day)
+                            let isSelected = selectedDate?.day == day && selectedDate?.month == currentMonthIndex + 1 && selectedDate?.year == currentYear
+                            let isSelectedWeekday = selectedWeekday != nil && Calendar.current.component(.weekday, from: date) - 1 == selectedWeekday
                             ZStack {
-                                if selectedDate?.day == day && selectedDate?.month == currentMonthIndex + 1 && selectedDate?.year == currentYear {
+                                if isSelected || (selectedWeekday != nil && isSelectedWeekday) {
                                     Rectangle()
                                         .fill(Color.blue.opacity(0.3))
                                         .frame(width: 30, height: 30)
@@ -79,10 +89,11 @@ struct CalendarView: View {
                                 Text("\(day)")
                                     .foregroundColor(isToday ? .green : .primary)
                                     .frame(width: 30, height: 30)
-                                    .background(selectedDate?.day == day && selectedDate?.month == currentMonthIndex + 1 && selectedDate?.year == currentYear ? Color.blue.opacity(0.3) : Color.clear)
+                                    .background(isSelected || (selectedWeekday != nil && isSelectedWeekday) ? Color.blue.opacity(0.3) : Color.clear)
                                     .cornerRadius(5)
                                     .onTapGesture {
                                         selectedDate = SelectedDate(day: day, month: currentMonthIndex + 1, year: currentYear)
+                                        selectedWeekday = nil // Clear weekday selection
                                     }
                             }
                         } else {
@@ -130,5 +141,27 @@ struct CalendarView: View {
         } else {
             currentMonthIndex -= 1
         }
+    }
+    
+    func generateDays(for month: Int, year: Int) -> [DateComponent] {
+        var dateComponents: [DateComponent] = []
+        let calendar = Calendar.current
+        let dateComponentsDate = DateComponents(year: year, month: month)
+        guard let firstDayOfMonth = calendar.date(from: dateComponentsDate),
+              let range = calendar.range(of: .day, in: .month, for: firstDayOfMonth) else {
+            return []
+        }
+        
+        let firstWeekday = calendar.component(.weekday, from: firstDayOfMonth) - 1
+        
+        for _ in 0..<firstWeekday {
+            dateComponents.append(DateComponent(day: nil, isPlaceholder: true))
+        }
+        
+        for day in range {
+            dateComponents.append(DateComponent(day: day, isPlaceholder: false))
+        }
+        
+        return dateComponents
     }
 }
