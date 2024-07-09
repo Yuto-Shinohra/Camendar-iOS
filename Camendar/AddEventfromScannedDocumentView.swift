@@ -88,7 +88,7 @@ struct AddEventfromScannedDocumentView: View {
                     )
                     addEvent(newEvent)
                 }
-                presentationMode.wrappedValue.dismiss()
+//                presentationMode.wrappedValue.dismiss()
             }) {
                 Text("Add Events")
                     .padding()

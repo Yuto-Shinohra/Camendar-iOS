@@ -30,6 +30,7 @@ struct CalendarView: View {
     
     var body: some View {
         VStack {
+            //上のバー
             HStack {
                 Button(action: {
                     previousMonth()
@@ -54,7 +55,7 @@ struct CalendarView: View {
                 }
             }
             .padding()
-            
+            //縮める
             if isMax {
                 HStack {
                     ForEach(0..<7, id: \.self) { index in
@@ -115,9 +116,9 @@ struct CalendarView: View {
                 )
                 Spacer()
             }
+            Divider()
         }
     }
-    
     func monthName(for index: Int) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMMM"

@@ -18,9 +18,11 @@ struct AddEventMethodView: View {
     @State private var endTime: Date // End time
     @State private var isAllDay: Bool = false // All-day event toggle
     var addEvent: (CalendarEvent) -> Void // Closure to add event
+    var selectedDate: SelectedDate
     
     // Initialize with selected date
     init(selectedDate: SelectedDate, addEvent: @escaping (CalendarEvent) -> Void) {
+        self.selectedDate = selectedDate
         self.addEvent = addEvent
         let calendar = Calendar.current
         let date = calendar.date(from: DateComponents(
