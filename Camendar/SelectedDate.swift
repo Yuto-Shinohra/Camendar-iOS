@@ -19,3 +19,8 @@ struct SelectedDate: Identifiable, Equatable {
         self.year = year
     }
 }
+
+struct SelectedWeek: Identifiable, Equatable{
+    var id = UUID()
+    
+}

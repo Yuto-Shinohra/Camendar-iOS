@@ -13,10 +13,13 @@ struct CalendarView: View {
     let isSettings: Bool
     @State var isMax: Bool = false
     @State private var selectedWeekday: Int? = nil // State to track the selected weekday
-    
-    init(isSettings: Bool, selectedDate: Binding<SelectedDate?>) {
+    var events: [CalendarEvent] // List of events
+    @Environment(\.colorScheme) private var colorScheme
+
+    init(isSettings: Bool, selectedDate: Binding<SelectedDate?>, events: [CalendarEvent]) {
         self.isSettings = isSettings
         self._selectedDate = selectedDate
+        self.events = events
         _isMax = State(initialValue: !isSettings)
         
         let calendar = Calendar.current
@@ -27,10 +30,10 @@ struct CalendarView: View {
         _currentYear = State(initialValue: currentYear)
         _currentMonthIndex = State(initialValue: currentMonth - 1)
     }
-    
+
     var body: some View {
         VStack {
-            //上のバー
+            // Top bar
             HStack {
                 Button(action: {
                     previousMonth()
@@ -55,7 +58,8 @@ struct CalendarView: View {
                 }
             }
             .padding()
-            //縮める
+            
+            // Condensed view
             if isMax {
                 HStack {
                     ForEach(0..<7, id: \.self) { index in
@@ -71,7 +75,6 @@ struct CalendarView: View {
                     }
                 }
                 .padding([.leading, .trailing])
-                
                 LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 7), spacing: 10) {
                     ForEach(generateDays(for: currentMonthIndex + 1, year: currentYear), id: \.self) { dateComponent in
                         if let day = dateComponent.day {
@@ -79,6 +82,9 @@ struct CalendarView: View {
                             let isToday = Calendar.current.isDate(Date(), equalTo: date, toGranularity: .day)
                             let isSelected = selectedDate?.day == day && selectedDate?.month == currentMonthIndex + 1 && selectedDate?.year == currentYear
                             let isSelectedWeekday = selectedWeekday != nil && Calendar.current.component(.weekday, from: date) - 1 == selectedWeekday
+                            let hasEvents = events.contains { event in
+                                Calendar.current.isDate(event.date, inSameDayAs: date)
+                            }
                             ZStack {
                                 if isSelected || (selectedWeekday != nil && isSelectedWeekday) {
                                     Rectangle()
@@ -96,6 +102,13 @@ struct CalendarView: View {
                                         selectedDate = SelectedDate(day: day, month: currentMonthIndex + 1, year: currentYear)
                                         selectedWeekday = nil // Clear weekday selection
                                     }
+                                
+                                if hasEvents {
+                                    Image(systemName: "flag")
+                                        .font(.system(size: 9))
+                                        .frame(width: 5, height: 5)
+                                        .offset(x: 10, y: -10)
+                                }
                             }
                         } else {
                             Text("")
@@ -114,18 +127,32 @@ struct CalendarView: View {
                             }
                         }
                 )
-                Spacer()
+//                Spacer()
+                Button(action: {
+                    isMax.toggle()
+                }, label: {
+                    Image(systemName: "arrow.up")
+                        .foregroundColor(colorScheme == .dark ? .white : .black)
+                })
+            }else{
+                Button(action: {
+                    isMax.toggle()
+                }, label: {
+                    Image(systemName: "arrow.down")
+                        .foregroundColor(colorScheme == .dark ? .white : .black)
+                })
             }
             Divider()
         }
     }
+
     func monthName(for index: Int) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMMM"
         let date = Calendar.current.date(from: DateComponents(year: 2020, month: index + 1))!
         return dateFormatter.string(from: date)
     }
-    
+
     func nextMonth() {
         if currentMonthIndex == 11 {
             currentMonthIndex = 0
@@ -134,7 +161,7 @@ struct CalendarView: View {
             currentMonthIndex += 1
         }
     }
-    
+
     func previousMonth() {
         if currentMonthIndex == 0 {
             currentMonthIndex = 11
@@ -143,7 +170,7 @@ struct CalendarView: View {
             currentMonthIndex -= 1
         }
     }
-    
+
     func generateDays(for month: Int, year: Int) -> [DateComponent] {
         var dateComponents: [DateComponent] = []
         let calendar = Calendar.current

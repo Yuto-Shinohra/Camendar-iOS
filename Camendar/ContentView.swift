@@ -20,14 +20,14 @@ struct ContentView: View {
         Auth.auth().currentUser?.uid
     }
 
-    var body: some View{
-        VStack{
+    var body: some View {
+        VStack {
             if selectednum == 0 || selectednum == 1 {
-                CalendarView(isSettings: false, selectedDate: $selectedDate)
+                CalendarView(isSettings: false, selectedDate: $selectedDate, events: events)
             } else if selectednum == 2 {
-                CalendarView(isSettings: true, selectedDate: $selectedDate)
+                CalendarView(isSettings: true, selectedDate: $selectedDate, events: events)
             }
-            TabView(selection: $selectednum){
+            TabView(selection: $selectednum) {
                 HomeView(selectedDate: $selectedDate)
                     .tabItem { Image(systemName: "house") }
                     .tag(0)
@@ -43,10 +43,14 @@ struct ContentView: View {
                 })
                 .tabItem { Image(systemName: "plus") }
                 .tag(1)
+                //AddEventfromScannedDocumentView追加
                 SettingsView()
                     .tabItem { Image(systemName: "gearshape") }
                     .tag(2)
             }
+        }
+        .onAppear {
+            loadEventsFromFirestore()
         }
     }
 
