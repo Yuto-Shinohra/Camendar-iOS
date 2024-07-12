@@ -22,9 +22,9 @@ struct ContentView: View {
 
     var body: some View {
         VStack {
-            if selectednum == 0 || selectednum == 1 {
+            if selectednum == 0 || selectednum == 1 || selectednum == 2{
                 CalendarView(isSettings: false, selectedDate: $selectedDate, events: events)
-            } else if selectednum == 2 {
+            } else if selectednum == 3 {
                 CalendarView(isSettings: true, selectedDate: $selectedDate, events: events)
             }
             TabView(selection: $selectednum) {
@@ -44,9 +44,15 @@ struct ContentView: View {
                 .tabItem { Image(systemName: "plus") }
                 .tag(1)
                 //AddEventfromScannedDocumentView追加
+                AddEventfromScannedDocumentView(selectedDate: defaultDate, addEvent: { newEvent in
+                    events.append(newEvent)
+                    saveEventToFirestore(event: newEvent)
+                })
+                .tabItem { Image(systemName: "doc.viewfinder.fill") }
+                .tag(2)
                 SettingsView()
                     .tabItem { Image(systemName: "gearshape") }
-                    .tag(2)
+                    .tag(3)
             }
         }
         .onAppear {

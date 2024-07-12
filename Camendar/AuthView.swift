@@ -38,7 +38,7 @@ struct AuthView: View {
 
             Button(action: {
                 isSignUp ? signUp() : signIn()
-                showContentView.toggle()
+                
             }) {
                 Text(isSignUp ? "Sign Up" : "Login")
                     .padding()
@@ -71,7 +71,7 @@ struct AuthView: View {
             if let error = error {
                 errorMessage = error.localizedDescription
             } else {
-                showContentView = true
+                showContentView.toggle()
             }
         }
     }
@@ -81,8 +81,7 @@ struct AuthView: View {
             if let error = error {
                 errorMessage = error.localizedDescription
             } else {
-                showContentView = true
-            }
+                showContentView.toggle()            }
         }
     }
 }

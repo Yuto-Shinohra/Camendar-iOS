@@ -11,7 +11,6 @@ import FirebaseFirestore
 import FirebaseAuth
 
 struct AddEventMethodView: View {
-    @Environment(\.presentationMode) var presentationMode // For closing the view
     @State private var eventName: String = "" // Event name
     @State private var eventDate: Date // Event date
     @State private var startTime: Date // Start time
@@ -74,7 +73,6 @@ struct AddEventMethodView: View {
                         )
                         addEvent(event)
                         saveEventToFirestore(event: event)
-                        presentationMode.wrappedValue.dismiss()
                     }, label: {
                         Text("Add Event")
                             .padding()
@@ -92,6 +90,7 @@ struct AddEventMethodView: View {
         guard let userId = Auth.auth().currentUser?.uid else { return }
         do {
             try db.collection("users").document(userId).collection("events").document(event.id?.uuidString ?? UUID().uuidString).setData(event.toDictionary())
+            print("success!")
         } catch let error {
             print("Error writing event to Firestore: \(error)")
         }

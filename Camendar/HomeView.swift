@@ -95,6 +95,7 @@ struct HomeView: View {
         guard let userId = userId else { return }
         do {
             try db.collection("users").document(userId).collection("events").document(event.id?.uuidString ?? UUID().uuidString).setData(event.toDictionary())
+            print("success")
         } catch let error {
             print("Error writing event to Firestore: \(error)")
         }
